@@ -13,7 +13,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "nba-lottery",
-	Short: "A brief description of your application",
+	Short: "Check the current NBA standings and simulate the draft lottery.",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
