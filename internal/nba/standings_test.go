@@ -5,5 +5,5 @@ import (
 )
 
 func TestStandings(t *testing.T) {
-	GetStandings()
+	GetStandings(false)
 }

@@ -10,7 +10,7 @@ import (
 func GenerateLottery() *string {
 	rand.Seed(structures.RandInt())
 
-	json, err := GetStandings()
+	json, err := GetStandings(false)
 	if err != nil {
 		fmt.Printf("ERROR HERE: %v", err.Error())
 	}
@@ -28,7 +28,6 @@ func GenerateLottery() *string {
 	}
 
 	// Repeat the picking process until all teams have been chosen
-	var picks []structures.Team = []structures.Team{}
 	var pick = 0
 	var firstPick *string = nil
 	for len(teams) > 0 {
@@ -47,7 +46,6 @@ func GenerateLottery() *string {
 
 				// The team is picked, so print its name and remove it from the list
 				// fmt.Printf("%v | %v - %v\n", pick, team.Name, team.Percentage)
-				picks = append(picks, team)
 				teams = append(teams[:i], teams[i+1:]...)
 				total -= team.FirstPickOdds
 				break

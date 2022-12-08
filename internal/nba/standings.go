@@ -15,7 +15,16 @@ import (
 )
 
 // If standings file doesn't exist, create it otherwise read the local data and return it
-func GetStandings() (*structures.TeamJSON, error) {
+func GetStandings(forceRefresh bool) (*structures.TeamJSON, error) {
+	if forceRefresh {
+		standings, err := GetStandingsFromESPN()
+		if err != nil {
+			return nil, err
+		}
+
+		return standings, nil
+	}
+
 	if _, err := os.Stat("standings.json"); err != nil {
 		standings, err := GetStandingsFromESPN()
 		if err != nil {

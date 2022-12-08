@@ -9,11 +9,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var shouldUpgrade bool
+
 var standingsCmd = &cobra.Command{
 	Use:   "standings",
 	Short: "View the latest NBA standings.",
 	Run: func(cmd *cobra.Command, args []string) {
-		json, err := nba.GetStandings()
+		json, err := nba.GetStandings(shouldUpgrade)
 		if err != nil {
 			fmt.Printf("ERROR HERE: %v", err.Error())
 			return
@@ -42,5 +44,7 @@ var standingsCmd = &cobra.Command{
 }
 
 func init() {
+	standingsCmd.Flags().BoolVarP(&shouldUpgrade, "upgrade", "u", false, "Should it upgrade the standings saved?")
+
 	rootCmd.AddCommand(standingsCmd)
 }

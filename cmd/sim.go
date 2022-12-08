@@ -15,7 +15,7 @@ var simCmd = &cobra.Command{
 	Use:   "sim",
 	Short: "Simulate the draft lottery.",
 	Run: func(cmd *cobra.Command, args []string) {
-		json, err := nba.GetStandings()
+		json, err := nba.GetStandings(false)
 		if err != nil {
 			fmt.Printf("ERROR HERE: %v", err.Error())
 			return
