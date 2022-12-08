@@ -17,7 +17,7 @@ jobs:
           dest: build
           targets: windows/amd64,linux/amd64,darwin/amd64
           v: true
-          ldflags: -s -w -X main.Version=0.1.1
+          ldflags: -s -w -X main.Version=0.1.2
           buildmode: default
           prefix: nba-lottery
       - run: mv build/nba-lottery-windows* build/nba-lottery-windows.exe
@@ -32,8 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: 0.1.1
-          release_name: v0.1.1 Release - ${{ env.DATE }}
+          tag_name: 0.1.2
+          release_name: v0.1.2 Release - ${{ env.DATE }}
           draft: false
       - name: Upload Windows Asset
         id: upload-release-asset-win 
