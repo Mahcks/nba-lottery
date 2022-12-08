@@ -6,6 +6,16 @@ import (
 	"math/rand"
 )
 
+var version = "dev"
+
+func SetVersion(v string) {
+	version = v
+}
+
+func GetVersion() string {
+	return version
+}
+
 type Pair struct {
 	Key        string
 	Value      int
