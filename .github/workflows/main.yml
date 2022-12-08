@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: 0.1.0
-          release_name: Nightly Release - ${{ env.DATE }}
+          release_name: v0.1.0 Release - ${{ env.DATE }}
           draft: false
           prerelease: true
       - name: Upload Windows Asset
