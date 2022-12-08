@@ -12,7 +12,7 @@ Note: If you are using MacOS and downloading the binary manually, you may need t
 chmod 755 <filename>
 ```
 
-*Replace "<filename>" with the actual name of the downloaded binary.*
+*Replace `<filename>` with the actual name of the downloaded binary.*
 
 ## Commands
 
