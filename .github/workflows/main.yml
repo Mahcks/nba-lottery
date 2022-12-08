@@ -36,6 +36,5 @@ jobs:
         uses: irongut/EditRelease@v1.2.0
         with:
           token: ${{ secrets.GH_TOKEN }}
-          tag_name: ${{ github.event.release.tag_name }}
           name: ${{ github.event.release.tag_name }} Release - ${{ env.DATE }}
           files: "/build/nba-lottery-windows.exe,./build/nba-lottery-macos,./build/nba-lottery-linux"
