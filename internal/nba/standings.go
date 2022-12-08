@@ -16,7 +16,7 @@ import (
 
 // If standings file doesn't exist, create it otherwise read the local data and return it
 func GetStandings() (*structures.TeamJSON, error) {
-	if _, err := os.Stat("data/standings.json"); err != nil {
+	if _, err := os.Stat("standings.json"); err != nil {
 		standings, err := GetStandingsFromESPN()
 		if err != nil {
 			return nil, err
@@ -35,7 +35,7 @@ func GetStandings() (*structures.TeamJSON, error) {
 
 // Grabs standings from local file
 func GetLocalStandings() (*structures.TeamJSON, error) {
-	file, _ := ioutil.ReadFile("data/standings.json")
+	file, _ := ioutil.ReadFile("standings.json")
 
 	var standings structures.TeamJSON
 	json.Unmarshal(file, &standings)
@@ -125,7 +125,7 @@ func GetStandingsFromESPN() (*structures.TeamJSON, error) {
 
 	// Prepare and write to standings file
 	file, _ := json.MarshalIndent(jsonObj, "", " ")
-	ioutil.WriteFile("data/standings.json", file, 0644)
+	ioutil.WriteFile("standings.json", file, 0644)
 
 	return &jsonObj, nil
 }
