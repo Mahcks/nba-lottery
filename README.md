@@ -4,7 +4,7 @@ Simple CLI tool built to simulate the NBA draft lottery and view current standin
 
 ## Installation
 
-To download the binary, go to the Releases tab on this GitHub page. The examples in the documentation use the binary in its own folder since it generates its own JSON file.
+To download the binary, go to the [Releases](https://github.com/Mahcks/nba-lottery/releases/latest) tab on this GitHub page. The examples in the documentation use the binary in its own folder since it generates its own JSON file.
 
 Note: If you are using MacOS and downloading the binary manually, you may need to adjust its permissions to allow for execution. To do this, run the following command:
 
@@ -53,4 +53,3 @@ View the locally stored NBA standings, do `-r` to reload the locally stored data
 ```bash
 ./nba-lottery.exe standings --reload
 ```
-
