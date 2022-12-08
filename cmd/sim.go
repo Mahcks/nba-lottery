@@ -6,6 +6,7 @@ import (
 
 	"github.com/Mahcks/nba-lottery/internal/nba"
 	"github.com/Mahcks/nba-lottery/internal/structures"
+	"github.com/rodaine/table"
 	"github.com/spf13/cobra"
 )
 
@@ -45,11 +46,29 @@ var simCmd = &cobra.Command{
 
 		sort.Sort(p)
 
-		for _, k := range p {
-			fmt.Printf("%v. %v | %v/%v\n", k.Value+1, k.Key, k.FirstPicks, times)
+		tbl := table.New("PICK", "TEAM", "TIMES #1")
+		for i, k := range p {
+			pick := i + 1
+			lotPick := k.Value + 1
+
+			if pick == lotPick {
+				tbl.AddRow(pick, k.Key, k.FirstPicks)
+				continue
+			}
+
+			if pick <= lotPick {
+				tbl.AddRow(fmt.Sprintf("%v +%v", pick, lotPick-pick), k.Key, k.FirstPicks)
+			} else {
+				tbl.AddRow(fmt.Sprintf("%v %v", pick, lotPick-pick), k.Key, k.FirstPicks)
+			}
 		}
 
-		fmt.Println(json.Teams[16:])
+		if times == 1 {
+			fmt.Println("============ LOTTERY SIMULATION | RAN 1 TIME ============")
+		} else {
+			fmt.Printf("============ LOTTERY SIMULATION | RAN %v TIMES ============\n", times)
+		}
+		tbl.Print()
 	},
 }
 
