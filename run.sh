@@ -2,9 +2,9 @@
 
 # Build binaries for release
 build() {
-  gox -osarch="windows/amd64" -output="./build/release/nba-lottery-windows-amd64" -ldflags="-X main.Version=0.1.0"
-  gox -osarch="darwin/amd64" -output="./build/release/nba-lottery-darwin-amd64" -ldflags="-X main.Version=0.1.0"
-  gox -osarch="linux/amd64" -output="./build/release/nba-lottery-linux-amd64" -ldflags="-X main.Version=0.1.0"
+  gox -osarch="windows/amd64" -output="./build/release/nba-lottery-windows-amd64" -ldflags="-X main.Version=0.1.1"
+  gox -osarch="darwin/amd64" -output="./build/release/nba-lottery-darwin-amd64" -ldflags="-X main.Version=0.1.1"
+  gox -osarch="linux/amd64" -output="./build/release/nba-lottery-linux-amd64" -ldflags="-X main.Version=0.1.1"
 }
 
 # Remove all files from `build` than re-build

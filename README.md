@@ -45,7 +45,7 @@ View the locally stored NBA standings, do `-r` to reload the locally stored data
 
 #### Options
 
-- `-r, --reload BOOL`: Upgrade the standings with more up-to-date information.
+- `-r, --reload BOOL`: Reload the standings to get more up-to-date information.
 - `--help`: Show the help message and exit.
 
 #### Example

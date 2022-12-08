@@ -44,7 +44,7 @@ var standingsCmd = &cobra.Command{
 }
 
 func init() {
-	standingsCmd.Flags().BoolVarP(&shouldUpgrade, "upgrade", "u", false, "Should it upgrade the standings saved?")
+	standingsCmd.Flags().BoolVarP(&shouldUpgrade, "reload", "r", false, "Reload the standings to get more up-to-date information.")
 
 	rootCmd.AddCommand(standingsCmd)
 }

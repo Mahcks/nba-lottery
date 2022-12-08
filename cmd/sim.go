@@ -76,5 +76,5 @@ var simCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(simCmd)
 
-	simCmd.Flags().IntVarP(&times, "times", "t", 1, "Defines how many times you'd like to simulate the lottery.")
+	simCmd.Flags().IntVarP(&times, "times", "t", 1, "The number of times to run the simulation.")
 }
