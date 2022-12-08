@@ -38,4 +38,5 @@ jobs:
           id: ${{ github.event.release.id }}
           token: ${{ secrets.GH_TOKEN }}
           name: ${{ github.event.release.tag_name }} Release - ${{ env.DATE }}
-          files: "/build/nba-lottery-windows.exe,./build/nba-lottery-macos,./build/nba-lottery-linux"
+          files: "./build/nba-lottery-windows.exe,./build/nba-lottery-macos,./build/nba-lottery-linux"
+
