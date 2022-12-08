@@ -30,9 +30,9 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: Nightly
+          tag_name: 0.1.0
           release_name: Nightly Release - ${{ env.DATE }}
           draft: false
           prerelease: true
@@ -40,7 +40,7 @@ jobs:
         id: upload-release-asset-win 
         uses: actions/upload-release-asset@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./build/twitch-windows.exe
@@ -50,7 +50,7 @@ jobs:
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./build/twitch-macos
@@ -60,7 +60,7 @@ jobs:
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./build/twitch-linux
