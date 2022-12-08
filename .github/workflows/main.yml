@@ -1,42 +1,46 @@
 name: build
 
 on:
-  pull_request:
-  push:
+  release:
+    types: [published]
 
 jobs:
   build:
     name: Upload Release Asset
     runs-on: ubuntu-latest
-    env:
-      VERSION: 0.1.3
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Build with xgo
         uses: crazy-max/ghaction-xgo@v1
         with:
           dest: build
           targets: windows/amd64,linux/amd64,darwin/amd64
           v: true
-          ldflags: -s -w -X main.Version=${{ VERSION }}
+          ldflags: -s -w -X main.Version=${{ github.event.release.tag_name }}
           buildmode: default
           prefix: nba-lottery
+
       - run: mv build/nba-lottery-windows* build/nba-lottery-windows.exe
       - run: mv build/nba-lottery-darwin* build/nba-lottery-macos
       - run: mv build/nba-lottery-linux* build/nba-lottery-linux
+
       - name: Get current date
         id: date
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: ${{ VERSION }}
-          release_name: v${{ VERSION }} Release - ${{ env.DATE }}
+          tag_name: ${{ github.event.release.tag_name }}
+          release_name: v${{ github.event.release.tag_name }} Release - ${{ env.DATE }}
           draft: false
+
       - name: Upload Windows Asset
         id: upload-release-asset-win 
         uses: actions/upload-release-asset@v1
@@ -47,6 +51,7 @@ jobs:
           asset_path: ./build/nba-lottery-windows.exe
           asset_name: nba-lottery-windows.exe
           asset_content_type: application/x-dosexec
+
       - name: Upload MacOS Asset
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
@@ -57,6 +62,7 @@ jobs:
           asset_path: ./build/nba-lottery-macos
           asset_name: nba-lottery-macos
           asset_content_type: application/x-mach-binary
+
       - name: Upload Linux Asset
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
