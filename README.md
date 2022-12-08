@@ -2,8 +2,6 @@
 
 Simple CLI tool built to simulate the NBA draft lottery and view current standings.
 
-[TOC]
-
 ## Installation
 
 To download the binary, go to the Releases tab on this GitHub page. The examples in the documentation use the binary in its own folder since it generates its own JSON file.
