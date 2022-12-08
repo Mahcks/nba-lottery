@@ -45,25 +45,11 @@ func GetLocalStandings() (*structures.TeamJSON, error) {
 
 // GetStandingsFromESPN - Grab the latest standings from ESPN which will be saved locally
 func GetStandingsFromESPN() (*structures.TeamJSON, error) {
-	jsonFile, err := os.Open("data/teams.json")
-
-	if err != nil {
-		return nil, err
-	}
-
-	bytes, _ := ioutil.ReadAll(jsonFile)
-
-	var teams []structures.ESPNTeam
-
-	json.Unmarshal(bytes, &teams)
-
-	defer jsonFile.Close()
-
 	var jsonObj structures.TeamJSON = structures.TeamJSON{
 		LastUpdated: time.Now().Format(time.RFC3339),
 	}
 
-	for _, team := range teams {
+	for _, team := range Teams {
 		url := fmt.Sprintf("http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/%v", team.ID)
 
 		req, err := http.NewRequest(http.MethodGet, url, nil)
@@ -119,7 +105,7 @@ func GetStandingsFromESPN() (*structures.TeamJSON, error) {
 
 	// Loop through each team and get the odds for a first pick
 	for i := 0; i < len(jsonObj.Teams); i++ {
-		fmt.Printf("%v got a %v chance to get first", jsonObj.Teams[i].Name, getPercentage(i))
+		//fmt.Printf("%v got a %v chance to get first", jsonObj.Teams[i].Name, getPercentage(i))
 		jsonObj.Teams[i].FirstPickOdds = getPercentage(i + 1)
 	}
 
