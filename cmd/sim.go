@@ -13,8 +13,9 @@ import (
 var times int
 
 var simCmd = &cobra.Command{
-	Use:   "sim",
-	Short: "Simulate the draft lottery.",
+	Use:     "simulate",
+	Aliases: []string{"sim"},
+	Short:   "Simulate the draft lottery.",
 	Run: func(cmd *cobra.Command, args []string) {
 		json, err := nba.GetStandings(false)
 		if err != nil {
